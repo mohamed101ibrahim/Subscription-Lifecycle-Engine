@@ -1,0 +1,1436 @@
+{
+	"info": {
+		"_postman_id": "9acfb87e-7032-4119-8b41-19c3d780a637",
+		"name": "Subscription",
+		"description": "# 🚀 Get started here\n\nThis template guides you through CRUD operations (GET, POST, PUT, DELETE), variables, and tests.\n\n## 🔖 **How to use this template**\n\n#### **Step 1: Send requests**\n\nRESTful APIs allow you to perform CRUD operations using the POST, GET, PUT, and DELETE HTTP methods.\n\nThis collection contains each of these [request](https://learning.postman.com/docs/sending-requests/requests/) types. Open each request and click \"Send\" to see what happens.\n\n#### **Step 2: View responses**\n\nObserve the response tab for status code (200 OK), response time, and size.\n\n#### **Step 3: Send new Body data**\n\nUpdate or add new data in \"Body\" in the POST request. Typically, Body data is also used in PUT request.\n\n```\n{\n    \"name\": \"Add your name in the body\"\n}\n\n ```\n\n#### **Step 4: Update the variable**\n\nVariables enable you to store and reuse values in Postman. We have created a [variable](https://learning.postman.com/docs/sending-requests/variables/) called `base_url` with the sample request [https://postman-api-learner.glitch.me](https://postman-api-learner.glitch.me). Replace it with your API endpoint to customize this collection.\n\n#### **Step 5: Add tests in the \"Scripts\" tab**\n\nAdding tests to your requests can help you confirm that your API is working as expected. You can write test scripts in JavaScript and view the output in the \"Test Results\" tab.\n\n<img src=\"https://content.pstmn.io/fa30ea0a-373d-4545-a668-e7b283cca343/aW1hZ2UucG5n\" alt=\"\" height=\"1530\" width=\"2162\">\n\n## 💪 Pro tips\n\n- Use folders to group related requests and organize the collection.\n    \n- Add more [scripts](https://learning.postman.com/docs/writing-scripts/intro-to-scripts/) to verify if the API works as expected and execute workflows.\n    \n\n## 💡Related templates\n\n[API testing basics](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9a37a28-055b-49cd-8c7e-97494a21eb54&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[API documentation](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9c28f47-1253-44af-a2f3-20dce4da1f18&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[Authorization methods](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=31a9a6ed-4cdf-4ced-984c-d12c9aec1c27&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22862949",
+		"_collection_link": "https://team33-1718.postman.co/workspace/team-Workspace~111178cc-0001-444a-8574-06b02054cfa1/collection/22862949-9acfb87e-7032-4119-8b41-19c3d780a637?action=share&source=collection_link&creator=22862949"
+	},
+	"item": [
+		{
+			"name": "plans",
+			"item": [
+				{
+					"name": "get all plans",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/plans",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"plans"
+							]
+						},
+						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/plans",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"plans"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.12"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 05 Apr 2026 21:53:01 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"Basic\",\n            \"description\": \"Perfect for getting started\",\n            \"features\": \"[\\\"Up to 100 API calls\\\\/month\\\",\\\"Basic support\\\",\\\"Email notifications\\\"]\",\n            \"is_active\": true,\n            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n            \"updated_at\": \"2026-04-05T21:50:10.000000Z\",\n            \"billing_cycles\": [\n                {\n                    \"id\": 1,\n                    \"plan_id\": 1,\n                    \"cycle_type\": \"daily\",\n                    \"duration_in_days\": 1,\n                    \"display_name\": \"Daily\",\n                    \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                    \"updated_at\": \"2026-04-05T21:50:10.000000Z\",\n                    \"prices\": [\n                        {\n                            \"id\": 1,\n                            \"plan_billing_cycle_id\": 1,\n                            \"currency\": \"USD\",\n                            \"price\": \"2.99\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 2,\n                            \"plan_billing_cycle_id\": 1,\n                            \"currency\": \"AED\",\n                            \"price\": \"10.97\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 3,\n                            \"plan_billing_cycle_id\": 1,\n                            \"currency\": \"EGP\",\n                            \"price\": \"92.39\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 4,\n                            \"plan_billing_cycle_id\": 1,\n                            \"currency\": \"SAR\",\n                            \"price\": \"11.21\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 5,\n                            \"plan_billing_cycle_id\": 1,\n                            \"currency\": \"KWD\",\n                            \"price\": \"0.92\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 6,\n                            \"plan_billing_cycle_id\": 1,\n                            \"currency\": \"QAR\",\n                            \"price\": \"10.88\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 7,\n                            \"plan_billing_cycle_id\": 1,\n                            \"currency\": \"BHD\",\n                            \"price\": \"1.12\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 8,\n                            \"plan_billing_cycle_id\": 1,\n                            \"currency\": \"OMR\",\n                            \"price\": \"1.15\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 9,\n                            \"plan_billing_cycle_id\": 1,\n                            \"currency\": \"EUR\",\n                            \"price\": \"2.75\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 10,\n                            \"plan_billing_cycle_id\": 1,\n                            \"currency\": \"GBP\",\n                            \"price\": \"2.36\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        }\n                    ]\n                },\n                {\n                    \"id\": 2,\n                    \"plan_id\": 1,\n                    \"cycle_type\": \"weekly\",\n                    \"duration_in_days\": 7,\n                    \"display_name\": \"Weekly\",\n                    \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                    \"updated_at\": \"2026-04-05T21:50:10.000000Z\",\n                    \"prices\": [\n                        {\n                            \"id\": 11,\n                            \"plan_billing_cycle_id\": 2,\n                            \"currency\": \"USD\",\n                            \"price\": \"15.99\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 12,\n                            \"plan_billing_cycle_id\": 2,\n                            \"currency\": \"AED\",\n                            \"price\": \"58.68\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 13,\n                            \"plan_billing_cycle_id\": 2,\n                            \"currency\": \"EGP\",\n                            \"price\": \"494.09\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 14,\n                            \"plan_billing_cycle_id\": 2,\n                            \"currency\": \"SAR\",\n                            \"price\": \"59.96\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 15,\n                            \"plan_billing_cycle_id\": 2,\n                            \"currency\": \"KWD\",\n                            \"price\": \"4.91\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 16,\n                            \"plan_billing_cycle_id\": 2,\n                            \"currency\": \"QAR\",\n                            \"price\": \"58.20\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 17,\n                            \"plan_billing_cycle_id\": 2,\n                            \"currency\": \"BHD\",\n                            \"price\": \"6.01\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 18,\n                            \"plan_billing_cycle_id\": 2,\n                            \"currency\": \"OMR\",\n                            \"price\": \"6.16\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 19,\n                            \"plan_billing_cycle_id\": 2,\n                            \"currency\": \"EUR\",\n                            \"price\": \"14.71\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 20,\n                            \"plan_billing_cycle_id\": 2,\n                            \"currency\": \"GBP\",\n                            \"price\": \"12.63\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        }\n                    ]\n                },\n                {\n                    \"id\": 3,\n                    \"plan_id\": 1,\n                    \"cycle_type\": \"monthly\",\n                    \"duration_in_days\": 30,\n                    \"display_name\": \"Monthly\",\n                    \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                    \"updated_at\": \"2026-04-05T21:50:10.000000Z\",\n                    \"prices\": [\n                        {\n                            \"id\": 21,\n                            \"plan_billing_cycle_id\": 3,\n                            \"currency\": \"USD\",\n                            \"price\": \"49.99\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 22,\n                            \"plan_billing_cycle_id\": 3,\n                            \"currency\": \"AED\",\n                            \"price\": \"183.46\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 23,\n                            \"plan_billing_cycle_id\": 3,\n                            \"currency\": \"EGP\",\n                            \"price\": \"1544.69\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 24,\n                            \"plan_billing_cycle_id\": 3,\n                            \"currency\": \"SAR\",\n                            \"price\": \"187.46\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 25,\n                            \"plan_billing_cycle_id\": 3,\n                            \"currency\": \"KWD\",\n                            \"price\": \"15.35\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 26,\n                            \"plan_billing_cycle_id\": 3,\n                            \"currency\": \"QAR\",\n                            \"price\": \"181.96\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 27,\n                            \"plan_billing_cycle_id\": 3,\n                            \"currency\": \"BHD\",\n                            \"price\": \"18.80\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 28,\n                            \"plan_billing_cycle_id\": 3,\n                            \"currency\": \"OMR\",\n                            \"price\": \"19.25\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 29,\n                            \"plan_billing_cycle_id\": 3,\n                            \"currency\": \"EUR\",\n                            \"price\": \"45.99\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 30,\n                            \"plan_billing_cycle_id\": 3,\n                            \"currency\": \"GBP\",\n                            \"price\": \"39.49\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        }\n                    ]\n                },\n                {\n                    \"id\": 4,\n                    \"plan_id\": 1,\n                    \"cycle_type\": \"quarterly\",\n                    \"duration_in_days\": 90,\n                    \"display_name\": \"Quarterly\",\n                    \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                    \"updated_at\": \"2026-04-05T21:50:10.000000Z\",\n                    \"prices\": [\n                        {\n                            \"id\": 31,\n                            \"plan_billing_cycle_id\": 4,\n                            \"currency\": \"USD\",\n                            \"price\": \"139.99\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 32,\n                            \"plan_billing_cycle_id\": 4,\n                            \"currency\": \"AED\",\n                            \"price\": \"513.76\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 33,\n                            \"plan_billing_cycle_id\": 4,\n                            \"currency\": \"EGP\",\n                            \"price\": \"4325.69\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 34,\n                            \"plan_billing_cycle_id\": 4,\n                            \"currency\": \"SAR\",\n                            \"price\": \"524.96\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 35,\n                            \"plan_billing_cycle_id\": 4,\n                            \"currency\": \"KWD\",\n                            \"price\": \"42.98\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 36,\n                            \"plan_billing_cycle_id\": 4,\n                            \"currency\": \"QAR\",\n                            \"price\": \"509.56\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 37,\n                            \"plan_billing_cycle_id\": 4,\n                            \"currency\": \"BHD\",\n                            \"price\": \"52.64\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 38,\n                            \"plan_billing_cycle_id\": 4,\n                            \"currency\": \"OMR\",\n                            \"price\": \"53.90\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 39,\n                            \"plan_billing_cycle_id\": 4,\n                            \"currency\": \"EUR\",\n                            \"price\": \"128.79\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 40,\n                            \"plan_billing_cycle_id\": 4,\n                            \"currency\": \"GBP\",\n                            \"price\": \"110.59\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        }\n                    ]\n                },\n                {\n                    \"id\": 5,\n                    \"plan_id\": 1,\n                    \"cycle_type\": \"semi_annual\",\n                    \"duration_in_days\": 180,\n                    \"display_name\": \"Semi-Annual\",\n                    \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                    \"updated_at\": \"2026-04-05T21:50:10.000000Z\",\n                    \"prices\": [\n                        {\n                            \"id\": 41,\n                            \"plan_billing_cycle_id\": 5,\n                            \"currency\": \"USD\",\n                            \"price\": \"269.99\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 42,\n                            \"plan_billing_cycle_id\": 5,\n                            \"currency\": \"AED\",\n                            \"price\": \"990.86\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 43,\n                            \"plan_billing_cycle_id\": 5,\n                            \"currency\": \"EGP\",\n                            \"price\": \"8342.69\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 44,\n                            \"plan_billing_cycle_id\": 5,\n                            \"currency\": \"SAR\",\n                            \"price\": \"1012.46\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 45,\n                            \"plan_billing_cycle_id\": 5,\n                            \"currency\": \"KWD\",\n                            \"price\": \"82.89\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 46,\n                            \"plan_billing_cycle_id\": 5,\n                            \"currency\": \"QAR\",\n                            \"price\": \"982.76\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 47,\n                            \"plan_billing_cycle_id\": 5,\n                            \"currency\": \"BHD\",\n                            \"price\": \"101.52\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 48,\n                            \"plan_billing_cycle_id\": 5,\n                            \"currency\": \"OMR\",\n                            \"price\": \"103.95\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 49,\n                            \"plan_billing_cycle_id\": 5,\n                            \"currency\": \"EUR\",\n                            \"price\": \"248.39\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 50,\n                            \"plan_billing_cycle_id\": 5,\n                            \"currency\": \"GBP\",\n                            \"price\": \"213.29\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        }\n                    ]\n                },\n                {\n                    \"id\": 6,\n                    \"plan_id\": 1,\n                    \"cycle_type\": \"yearly\",\n                    \"duration_in_days\": 365,\n                    \"display_name\": \"Yearly\",\n                    \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                    \"updated_at\": \"2026-04-05T21:50:10.000000Z\",\n                    \"prices\": [\n                        {\n                            \"id\": 51,\n                            \"plan_billing_cycle_id\": 6,\n                            \"currency\": \"USD\",\n                            \"price\": \"499.99\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 52,\n                            \"plan_billing_cycle_id\": 6,\n                            \"currency\": \"AED\",\n                            \"price\": \"1834.96\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 53,\n                            \"plan_billing_cycle_id\": 6,\n                            \"currency\": \"EGP\",\n                            \"price\": \"15449.69\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 54,\n                            \"plan_billing_cycle_id\": 6,\n                            \"currency\": \"SAR\",\n                            \"price\": \"1874.96\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 55,\n                            \"plan_billing_cycle_id\": 6,\n                            \"currency\": \"KWD\",\n                            \"price\": \"153.50\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 56,\n                            \"plan_billing_cycle_id\": 6,\n                            \"currency\": \"QAR\",\n                            \"price\": \"1819.96\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 57,\n                            \"plan_billing_cycle_id\": 6,\n                            \"currency\": \"BHD\",\n                            \"price\": \"188.00\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 58,\n                            \"plan_billing_cycle_id\": 6,\n                            \"currency\": \"OMR\",\n                            \"price\": \"192.50\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 59,\n                            \"plan_billing_cycle_id\": 6,\n                            \"currency\": \"EUR\",\n                            \"price\": \"459.99\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 60,\n                            \"plan_billing_cycle_id\": 6,\n                            \"currency\": \"GBP\",\n                            \"price\": \"394.99\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        }\n                    ]\n                }\n            ]\n        },\n        {\n            \"id\": 2,\n            \"name\": \"Professional\",\n            \"description\": \"For growing teams and businesses\",\n            \"features\": \"[\\\"Up to 10,000 API calls\\\\/month\\\",\\\"Priority support\\\",\\\"Advanced analytics\\\",\\\"Custom integrations\\\",\\\"Webhook support\\\",\\\"API access\\\"]\",\n            \"is_active\": true,\n            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n            \"updated_at\": \"2026-04-05T21:50:10.000000Z\",\n            \"billing_cycles\": [\n                {\n                    \"id\": 7,\n                    \"plan_id\": 2,\n                    \"cycle_type\": \"daily\",\n                    \"duration_in_days\": 1,\n                    \"display_name\": \"Daily\",\n                    \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                    \"updated_at\": \"2026-04-05T21:50:10.000000Z\",\n                    \"prices\": [\n                        {\n                            \"id\": 61,\n                            \"plan_billing_cycle_id\": 7,\n                            \"currency\": \"USD\",\n                            \"price\": \"9.99\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 62,\n                            \"plan_billing_cycle_id\": 7,\n                            \"currency\": \"AED\",\n                            \"price\": \"36.66\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 63,\n                            \"plan_billing_cycle_id\": 7,\n                            \"currency\": \"EGP\",\n                            \"price\": \"308.69\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 64,\n                            \"plan_billing_cycle_id\": 7,\n                            \"currency\": \"SAR\",\n                            \"price\": \"37.46\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 65,\n                            \"plan_billing_cycle_id\": 7,\n                            \"currency\": \"KWD\",\n                            \"price\": \"3.07\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 66,\n                            \"plan_billing_cycle_id\": 7,\n                            \"currency\": \"QAR\",\n                            \"price\": \"36.36\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 67,\n                            \"plan_billing_cycle_id\": 7,\n                            \"currency\": \"BHD\",\n                            \"price\": \"3.76\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 68,\n                            \"plan_billing_cycle_id\": 7,\n                            \"currency\": \"OMR\",\n                            \"price\": \"3.85\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 69,\n                            \"plan_billing_cycle_id\": 7,\n                            \"currency\": \"EUR\",\n                            \"price\": \"9.19\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 70,\n                            \"plan_billing_cycle_id\": 7,\n                            \"currency\": \"GBP\",\n                            \"price\": \"7.89\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        }\n                    ]\n                },\n                {\n                    \"id\": 8,\n                    \"plan_id\": 2,\n                    \"cycle_type\": \"weekly\",\n                    \"duration_in_days\": 7,\n                    \"display_name\": \"Weekly\",\n                    \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                    \"updated_at\": \"2026-04-05T21:50:10.000000Z\",\n                    \"prices\": [\n                        {\n                            \"id\": 71,\n                            \"plan_billing_cycle_id\": 8,\n                            \"currency\": \"USD\",\n                            \"price\": \"49.99\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 72,\n                            \"plan_billing_cycle_id\": 8,\n                            \"currency\": \"AED\",\n                            \"price\": \"183.46\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 73,\n                            \"plan_billing_cycle_id\": 8,\n                            \"currency\": \"EGP\",\n                            \"price\": \"1544.69\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 74,\n                            \"plan_billing_cycle_id\": 8,\n                            \"currency\": \"SAR\",\n                            \"price\": \"187.46\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 75,\n                            \"plan_billing_cycle_id\": 8,\n                            \"currency\": \"KWD\",\n                            \"price\": \"15.35\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 76,\n                            \"plan_billing_cycle_id\": 8,\n                            \"currency\": \"QAR\",\n                            \"price\": \"181.96\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 77,\n                            \"plan_billing_cycle_id\": 8,\n                            \"currency\": \"BHD\",\n                            \"price\": \"18.80\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 78,\n                            \"plan_billing_cycle_id\": 8,\n                            \"currency\": \"OMR\",\n                            \"price\": \"19.25\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 79,\n                            \"plan_billing_cycle_id\": 8,\n                            \"currency\": \"EUR\",\n                            \"price\": \"45.99\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 80,\n                            \"plan_billing_cycle_id\": 8,\n                            \"currency\": \"GBP\",\n                            \"price\": \"39.49\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        }\n                    ]\n                },\n                {\n                    \"id\": 9,\n                    \"plan_id\": 2,\n                    \"cycle_type\": \"monthly\",\n                    \"duration_in_days\": 30,\n                    \"display_name\": \"Monthly\",\n                    \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                    \"updated_at\": \"2026-04-05T21:50:10.000000Z\",\n                    \"prices\": [\n                        {\n                            \"id\": 81,\n                            \"plan_billing_cycle_id\": 9,\n                            \"currency\": \"USD\",\n                            \"price\": \"99.99\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 82,\n                            \"plan_billing_cycle_id\": 9,\n                            \"currency\": \"AED\",\n                            \"price\": \"366.96\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 83,\n                            \"plan_billing_cycle_id\": 9,\n                            \"currency\": \"EGP\",\n                            \"price\": \"3089.69\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 84,\n                            \"plan_billing_cycle_id\": 9,\n                            \"currency\": \"SAR\",\n                            \"price\": \"374.96\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 85,\n                            \"plan_billing_cycle_id\": 9,\n                            \"currency\": \"KWD\",\n                            \"price\": \"30.70\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 86,\n                            \"plan_billing_cycle_id\": 9,\n                            \"currency\": \"QAR\",\n                            \"price\": \"363.96\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 87,\n                            \"plan_billing_cycle_id\": 9,\n                            \"currency\": \"BHD\",\n                            \"price\": \"37.60\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 88,\n                            \"plan_billing_cycle_id\": 9,\n                            \"currency\": \"OMR\",\n                            \"price\": \"38.50\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 89,\n                            \"plan_billing_cycle_id\": 9,\n                            \"currency\": \"EUR\",\n                            \"price\": \"91.99\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 90,\n                            \"plan_billing_cycle_id\": 9,\n                            \"currency\": \"GBP\",\n                            \"price\": \"78.99\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        }\n                    ]\n                },\n                {\n                    \"id\": 10,\n                    \"plan_id\": 2,\n                    \"cycle_type\": \"quarterly\",\n                    \"duration_in_days\": 90,\n                    \"display_name\": \"Quarterly\",\n                    \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                    \"updated_at\": \"2026-04-05T21:50:10.000000Z\",\n                    \"prices\": [\n                        {\n                            \"id\": 91,\n                            \"plan_billing_cycle_id\": 10,\n                            \"currency\": \"USD\",\n                            \"price\": \"279.99\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 92,\n                            \"plan_billing_cycle_id\": 10,\n                            \"currency\": \"AED\",\n                            \"price\": \"1027.56\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 93,\n                            \"plan_billing_cycle_id\": 10,\n                            \"currency\": \"EGP\",\n                            \"price\": \"8651.69\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 94,\n                            \"plan_billing_cycle_id\": 10,\n                            \"currency\": \"SAR\",\n                            \"price\": \"1049.96\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 95,\n                            \"plan_billing_cycle_id\": 10,\n                            \"currency\": \"KWD\",\n                            \"price\": \"85.96\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 96,\n                            \"plan_billing_cycle_id\": 10,\n                            \"currency\": \"QAR\",\n                            \"price\": \"1019.16\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 97,\n                            \"plan_billing_cycle_id\": 10,\n                            \"currency\": \"BHD\",\n                            \"price\": \"105.28\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 98,\n                            \"plan_billing_cycle_id\": 10,\n                            \"currency\": \"OMR\",\n                            \"price\": \"107.80\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 99,\n                            \"plan_billing_cycle_id\": 10,\n                            \"currency\": \"EUR\",\n                            \"price\": \"257.59\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 100,\n                            \"plan_billing_cycle_id\": 10,\n                            \"currency\": \"GBP\",\n                            \"price\": \"221.19\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        }\n                    ]\n                },\n                {\n                    \"id\": 11,\n                    \"plan_id\": 2,\n                    \"cycle_type\": \"semi_annual\",\n                    \"duration_in_days\": 180,\n                    \"display_name\": \"Semi-Annual\",\n                    \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                    \"updated_at\": \"2026-04-05T21:50:10.000000Z\",\n                    \"prices\": [\n                        {\n                            \"id\": 101,\n                            \"plan_billing_cycle_id\": 11,\n                            \"currency\": \"USD\",\n                            \"price\": \"539.99\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 102,\n                            \"plan_billing_cycle_id\": 11,\n                            \"currency\": \"AED\",\n                            \"price\": \"1981.76\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 103,\n                            \"plan_billing_cycle_id\": 11,\n                            \"currency\": \"EGP\",\n                            \"price\": \"16685.69\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 104,\n                            \"plan_billing_cycle_id\": 11,\n                            \"currency\": \"SAR\",\n                            \"price\": \"2024.96\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 105,\n                            \"plan_billing_cycle_id\": 11,\n                            \"currency\": \"KWD\",\n                            \"price\": \"165.78\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 106,\n                            \"plan_billing_cycle_id\": 11,\n                            \"currency\": \"QAR\",\n                            \"price\": \"1965.56\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 107,\n                            \"plan_billing_cycle_id\": 11,\n                            \"currency\": \"BHD\",\n                            \"price\": \"203.04\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 108,\n                            \"plan_billing_cycle_id\": 11,\n                            \"currency\": \"OMR\",\n                            \"price\": \"207.90\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 109,\n                            \"plan_billing_cycle_id\": 11,\n                            \"currency\": \"EUR\",\n                            \"price\": \"496.79\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 110,\n                            \"plan_billing_cycle_id\": 11,\n                            \"currency\": \"GBP\",\n                            \"price\": \"426.59\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        }\n                    ]\n                },\n                {\n                    \"id\": 12,\n                    \"plan_id\": 2,\n                    \"cycle_type\": \"yearly\",\n                    \"duration_in_days\": 365,\n                    \"display_name\": \"Yearly\",\n                    \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                    \"updated_at\": \"2026-04-05T21:50:10.000000Z\",\n                    \"prices\": [\n                        {\n                            \"id\": 111,\n                            \"plan_billing_cycle_id\": 12,\n                            \"currency\": \"USD\",\n                            \"price\": \"999.99\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 112,\n                            \"plan_billing_cycle_id\": 12,\n                            \"currency\": \"AED\",\n                            \"price\": \"3669.96\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 113,\n                            \"plan_billing_cycle_id\": 12,\n                            \"currency\": \"EGP\",\n                            \"price\": \"30899.69\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 114,\n                            \"plan_billing_cycle_id\": 12,\n                            \"currency\": \"SAR\",\n                            \"price\": \"3749.96\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 115,\n                            \"plan_billing_cycle_id\": 12,\n                            \"currency\": \"KWD\",\n                            \"price\": \"307.00\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 116,\n                            \"plan_billing_cycle_id\": 12,\n                            \"currency\": \"QAR\",\n                            \"price\": \"3639.96\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 117,\n                            \"plan_billing_cycle_id\": 12,\n                            \"currency\": \"BHD\",\n                            \"price\": \"376.00\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 118,\n                            \"plan_billing_cycle_id\": 12,\n                            \"currency\": \"OMR\",\n                            \"price\": \"385.00\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 119,\n                            \"plan_billing_cycle_id\": 12,\n                            \"currency\": \"EUR\",\n                            \"price\": \"919.99\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 120,\n                            \"plan_billing_cycle_id\": 12,\n                            \"currency\": \"GBP\",\n                            \"price\": \"789.99\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        }\n                    ]\n                }\n            ]\n        },\n        {\n            \"id\": 3,\n            \"name\": \"Enterprise\",\n            \"description\": \"For large-scale operations\",\n            \"features\": \"[\\\"Unlimited API calls\\\",\\\"24\\\\/7 dedicated support\\\",\\\"Advanced reporting\\\",\\\"Custom SLA\\\",\\\"Multi-user management\\\",\\\"Advanced security\\\",\\\"Custom workflows\\\",\\\"Dedicated account manager\\\"]\",\n            \"is_active\": true,\n            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n            \"updated_at\": \"2026-04-05T21:50:10.000000Z\",\n            \"billing_cycles\": [\n                {\n                    \"id\": 13,\n                    \"plan_id\": 3,\n                    \"cycle_type\": \"monthly\",\n                    \"duration_in_days\": 30,\n                    \"display_name\": \"Monthly\",\n                    \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                    \"updated_at\": \"2026-04-05T21:50:10.000000Z\",\n                    \"prices\": [\n                        {\n                            \"id\": 121,\n                            \"plan_billing_cycle_id\": 13,\n                            \"currency\": \"USD\",\n                            \"price\": \"499.99\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 122,\n                            \"plan_billing_cycle_id\": 13,\n                            \"currency\": \"AED\",\n                            \"price\": \"1834.96\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 123,\n                            \"plan_billing_cycle_id\": 13,\n                            \"currency\": \"EGP\",\n                            \"price\": \"15449.69\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 124,\n                            \"plan_billing_cycle_id\": 13,\n                            \"currency\": \"SAR\",\n                            \"price\": \"1874.96\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 125,\n                            \"plan_billing_cycle_id\": 13,\n                            \"currency\": \"KWD\",\n                            \"price\": \"153.50\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 126,\n                            \"plan_billing_cycle_id\": 13,\n                            \"currency\": \"QAR\",\n                            \"price\": \"1819.96\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 127,\n                            \"plan_billing_cycle_id\": 13,\n                            \"currency\": \"BHD\",\n                            \"price\": \"188.00\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 128,\n                            \"plan_billing_cycle_id\": 13,\n                            \"currency\": \"OMR\",\n                            \"price\": \"192.50\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 129,\n                            \"plan_billing_cycle_id\": 13,\n                            \"currency\": \"EUR\",\n                            \"price\": \"459.99\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 130,\n                            \"plan_billing_cycle_id\": 13,\n                            \"currency\": \"GBP\",\n                            \"price\": \"394.99\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        }\n                    ]\n                },\n                {\n                    \"id\": 14,\n                    \"plan_id\": 3,\n                    \"cycle_type\": \"quarterly\",\n                    \"duration_in_days\": 90,\n                    \"display_name\": \"Quarterly\",\n                    \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                    \"updated_at\": \"2026-04-05T21:50:10.000000Z\",\n                    \"prices\": [\n                        {\n                            \"id\": 131,\n                            \"plan_billing_cycle_id\": 14,\n                            \"currency\": \"USD\",\n                            \"price\": \"1399.99\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 132,\n                            \"plan_billing_cycle_id\": 14,\n                            \"currency\": \"AED\",\n                            \"price\": \"5137.96\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 133,\n                            \"plan_billing_cycle_id\": 14,\n                            \"currency\": \"EGP\",\n                            \"price\": \"43259.69\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 134,\n                            \"plan_billing_cycle_id\": 14,\n                            \"currency\": \"SAR\",\n                            \"price\": \"5249.96\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 135,\n                            \"plan_billing_cycle_id\": 14,\n                            \"currency\": \"KWD\",\n                            \"price\": \"429.80\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 136,\n                            \"plan_billing_cycle_id\": 14,\n                            \"currency\": \"QAR\",\n                            \"price\": \"5095.96\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 137,\n                            \"plan_billing_cycle_id\": 14,\n                            \"currency\": \"BHD\",\n                            \"price\": \"526.40\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 138,\n                            \"plan_billing_cycle_id\": 14,\n                            \"currency\": \"OMR\",\n                            \"price\": \"539.00\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 139,\n                            \"plan_billing_cycle_id\": 14,\n                            \"currency\": \"EUR\",\n                            \"price\": \"1287.99\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 140,\n                            \"plan_billing_cycle_id\": 14,\n                            \"currency\": \"GBP\",\n                            \"price\": \"1105.99\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        }\n                    ]\n                },\n                {\n                    \"id\": 15,\n                    \"plan_id\": 3,\n                    \"cycle_type\": \"semi_annual\",\n                    \"duration_in_days\": 180,\n                    \"display_name\": \"Semi-Annual\",\n                    \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                    \"updated_at\": \"2026-04-05T21:50:10.000000Z\",\n                    \"prices\": [\n                        {\n                            \"id\": 141,\n                            \"plan_billing_cycle_id\": 15,\n                            \"currency\": \"USD\",\n                            \"price\": \"2699.99\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 142,\n                            \"plan_billing_cycle_id\": 15,\n                            \"currency\": \"AED\",\n                            \"price\": \"9908.96\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 143,\n                            \"plan_billing_cycle_id\": 15,\n                            \"currency\": \"EGP\",\n                            \"price\": \"83429.69\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 144,\n                            \"plan_billing_cycle_id\": 15,\n                            \"currency\": \"SAR\",\n                            \"price\": \"10124.96\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 145,\n                            \"plan_billing_cycle_id\": 15,\n                            \"currency\": \"KWD\",\n                            \"price\": \"828.90\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 146,\n                            \"plan_billing_cycle_id\": 15,\n                            \"currency\": \"QAR\",\n                            \"price\": \"9827.96\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 147,\n                            \"plan_billing_cycle_id\": 15,\n                            \"currency\": \"BHD\",\n                            \"price\": \"1015.20\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 148,\n                            \"plan_billing_cycle_id\": 15,\n                            \"currency\": \"OMR\",\n                            \"price\": \"1039.50\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 149,\n                            \"plan_billing_cycle_id\": 15,\n                            \"currency\": \"EUR\",\n                            \"price\": \"2483.99\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 150,\n                            \"plan_billing_cycle_id\": 15,\n                            \"currency\": \"GBP\",\n                            \"price\": \"2132.99\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        }\n                    ]\n                },\n                {\n                    \"id\": 16,\n                    \"plan_id\": 3,\n                    \"cycle_type\": \"yearly\",\n                    \"duration_in_days\": 365,\n                    \"display_name\": \"Yearly\",\n                    \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                    \"updated_at\": \"2026-04-05T21:50:10.000000Z\",\n                    \"prices\": [\n                        {\n                            \"id\": 151,\n                            \"plan_billing_cycle_id\": 16,\n                            \"currency\": \"USD\",\n                            \"price\": \"4999.99\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 152,\n                            \"plan_billing_cycle_id\": 16,\n                            \"currency\": \"AED\",\n                            \"price\": \"18349.96\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 153,\n                            \"plan_billing_cycle_id\": 16,\n                            \"currency\": \"EGP\",\n                            \"price\": \"154499.69\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 154,\n                            \"plan_billing_cycle_id\": 16,\n                            \"currency\": \"SAR\",\n                            \"price\": \"18749.96\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 155,\n                            \"plan_billing_cycle_id\": 16,\n                            \"currency\": \"KWD\",\n                            \"price\": \"1535.00\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 156,\n                            \"plan_billing_cycle_id\": 16,\n                            \"currency\": \"QAR\",\n                            \"price\": \"18199.96\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 157,\n                            \"plan_billing_cycle_id\": 16,\n                            \"currency\": \"BHD\",\n                            \"price\": \"1880.00\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 158,\n                            \"plan_billing_cycle_id\": 16,\n                            \"currency\": \"OMR\",\n                            \"price\": \"1925.00\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 159,\n                            \"plan_billing_cycle_id\": 16,\n                            \"currency\": \"EUR\",\n                            \"price\": \"4599.99\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 160,\n                            \"plan_billing_cycle_id\": 16,\n                            \"currency\": \"GBP\",\n                            \"price\": \"3949.99\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        }\n                    ]\n                }\n            ]\n        },\n        {\n            \"id\": 4,\n            \"name\": \"Starter\",\n            \"description\": \"For small projects and testing\",\n            \"features\": \"[\\\"Up to 10 API calls\\\\/month\\\",\\\"Community support\\\",\\\"Basic notifications\\\",\\\"1 GB storage\\\"]\",\n            \"is_active\": true,\n            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n            \"updated_at\": \"2026-04-05T21:50:10.000000Z\",\n            \"billing_cycles\": [\n                {\n                    \"id\": 17,\n                    \"plan_id\": 4,\n                    \"cycle_type\": \"weekly\",\n                    \"duration_in_days\": 7,\n                    \"display_name\": \"Weekly\",\n                    \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                    \"updated_at\": \"2026-04-05T21:50:10.000000Z\",\n                    \"prices\": [\n                        {\n                            \"id\": 161,\n                            \"plan_billing_cycle_id\": 17,\n                            \"currency\": \"USD\",\n                            \"price\": \"4.99\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 162,\n                            \"plan_billing_cycle_id\": 17,\n                            \"currency\": \"AED\",\n                            \"price\": \"18.31\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 163,\n                            \"plan_billing_cycle_id\": 17,\n                            \"currency\": \"EGP\",\n                            \"price\": \"154.19\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 164,\n                            \"plan_billing_cycle_id\": 17,\n                            \"currency\": \"SAR\",\n                            \"price\": \"18.71\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 165,\n                            \"plan_billing_cycle_id\": 17,\n                            \"currency\": \"KWD\",\n                            \"price\": \"1.53\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 166,\n                            \"plan_billing_cycle_id\": 17,\n                            \"currency\": \"QAR\",\n                            \"price\": \"18.16\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 167,\n                            \"plan_billing_cycle_id\": 17,\n                            \"currency\": \"BHD\",\n                            \"price\": \"1.88\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 168,\n                            \"plan_billing_cycle_id\": 17,\n                            \"currency\": \"OMR\",\n                            \"price\": \"1.92\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 169,\n                            \"plan_billing_cycle_id\": 17,\n                            \"currency\": \"EUR\",\n                            \"price\": \"4.59\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 170,\n                            \"plan_billing_cycle_id\": 17,\n                            \"currency\": \"GBP\",\n                            \"price\": \"3.94\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        }\n                    ]\n                },\n                {\n                    \"id\": 18,\n                    \"plan_id\": 4,\n                    \"cycle_type\": \"monthly\",\n                    \"duration_in_days\": 30,\n                    \"display_name\": \"Monthly\",\n                    \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                    \"updated_at\": \"2026-04-05T21:50:10.000000Z\",\n                    \"prices\": [\n                        {\n                            \"id\": 171,\n                            \"plan_billing_cycle_id\": 18,\n                            \"currency\": \"USD\",\n                            \"price\": \"9.99\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 172,\n                            \"plan_billing_cycle_id\": 18,\n                            \"currency\": \"AED\",\n                            \"price\": \"36.66\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 173,\n                            \"plan_billing_cycle_id\": 18,\n                            \"currency\": \"EGP\",\n                            \"price\": \"308.69\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 174,\n                            \"plan_billing_cycle_id\": 18,\n                            \"currency\": \"SAR\",\n                            \"price\": \"37.46\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 175,\n                            \"plan_billing_cycle_id\": 18,\n                            \"currency\": \"KWD\",\n                            \"price\": \"3.07\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 176,\n                            \"plan_billing_cycle_id\": 18,\n                            \"currency\": \"QAR\",\n                            \"price\": \"36.36\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 177,\n                            \"plan_billing_cycle_id\": 18,\n                            \"currency\": \"BHD\",\n                            \"price\": \"3.76\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 178,\n                            \"plan_billing_cycle_id\": 18,\n                            \"currency\": \"OMR\",\n                            \"price\": \"3.85\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 179,\n                            \"plan_billing_cycle_id\": 18,\n                            \"currency\": \"EUR\",\n                            \"price\": \"9.19\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 180,\n                            \"plan_billing_cycle_id\": 18,\n                            \"currency\": \"GBP\",\n                            \"price\": \"7.89\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        }\n                    ]\n                },\n                {\n                    \"id\": 19,\n                    \"plan_id\": 4,\n                    \"cycle_type\": \"yearly\",\n                    \"duration_in_days\": 365,\n                    \"display_name\": \"Yearly\",\n                    \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                    \"updated_at\": \"2026-04-05T21:50:10.000000Z\",\n                    \"prices\": [\n                        {\n                            \"id\": 181,\n                            \"plan_billing_cycle_id\": 19,\n                            \"currency\": \"USD\",\n                            \"price\": \"99.99\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 182,\n                            \"plan_billing_cycle_id\": 19,\n                            \"currency\": \"AED\",\n                            \"price\": \"366.96\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 183,\n                            \"plan_billing_cycle_id\": 19,\n                            \"currency\": \"EGP\",\n                            \"price\": \"3089.69\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 184,\n                            \"plan_billing_cycle_id\": 19,\n                            \"currency\": \"SAR\",\n                            \"price\": \"374.96\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 185,\n                            \"plan_billing_cycle_id\": 19,\n                            \"currency\": \"KWD\",\n                            \"price\": \"30.70\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 186,\n                            \"plan_billing_cycle_id\": 19,\n                            \"currency\": \"QAR\",\n                            \"price\": \"363.96\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 187,\n                            \"plan_billing_cycle_id\": 19,\n                            \"currency\": \"BHD\",\n                            \"price\": \"37.60\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 188,\n                            \"plan_billing_cycle_id\": 19,\n                            \"currency\": \"OMR\",\n                            \"price\": \"38.50\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 189,\n                            \"plan_billing_cycle_id\": 19,\n                            \"currency\": \"EUR\",\n                            \"price\": \"91.99\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        },\n                        {\n                            \"id\": 190,\n                            \"plan_billing_cycle_id\": 19,\n                            \"currency\": \"GBP\",\n                            \"price\": \"78.99\",\n                            \"is_active\": true,\n                            \"created_at\": \"2026-04-05T21:50:10.000000Z\",\n                            \"updated_at\": \"2026-04-05T21:50:10.000000Z\"\n                        }\n                    ]\n                }\n            ]\n        }\n    ],\n    \"pagination\": {\n        \"current_page\": 1,\n        \"per_page\": 15,\n        \"total\": 4,\n        \"last_page\": 1,\n        \"from\": 1,\n        \"to\": 4\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "get plan details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1MJkNneNGoCEvvswX7OObvMrq2t1l0Dx1ZY5Xs8c5a267bfc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/plans/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"plans",
+								"1"
+							]
+						},
+						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1MJkNneNGoCEvvswX7OObvMrq2t1l0Dx1ZY5Xs8c5a267bfc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"gold\",\n    \"description\": \"For advanced teams\",\n    \"features\": [\n        \"Advanced analytics\",\n        \"API access\",\n        \"Priority support\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/plans/create",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"plans",
+								"create"
+							]
+						},
+						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/plans/15",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"plans",
+								"15"
+							]
+						},
+						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/plans/110",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"plans",
+								"110"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"goldd\",\r\n    \"description\": \"For advanced teams\",\r\n    \"features\": [\r\n        \"Advanced analytics\",\r\n        \"API access\",\r\n        \"Priority support\"\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/plans/14",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"plans",
+										"14"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.12"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 06 Apr 2026 04:18:34 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Plan updated successfully\",\n    \"data\": {\n        \"id\": 14,\n        \"name\": \"goldd\",\n        \"description\": \"For advanced teams\",\n        \"features\": [\n            \"Advanced analytics\",\n            \"API access\",\n            \"Priority support\"\n        ],\n        \"is_active\": true,\n        \"updated_at\": \"2026-04-06T04:18:34.000000Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "plan billibg",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "xp0HdbV0MZcoZwxPfLy3Y3DZY6xbvns2xpJbZmwo577633d3",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"cycle_type\": \"monthly\",\r\n  \"duration_in_days\": 30,\r\n  \"display_name\": \"Monthly\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/plans/10/billing-cycles",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"plans",
+								"10",
+								"billing-cycles"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"cycle_type\": \"monthly\",\r\n  \"duration_in_days\": 30,\r\n  \"display_name\": \"Monthly\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/plans/10/billing-cycles",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"plans",
+										"10",
+										"billing-cycles"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.12"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 05 Apr 2026 23:22:27 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Billing cycle added successfully\",\n    \"data\": {\n        \"id\": 20,\n        \"plan_id\": 10,\n        \"cycle_type\": \"monthly\",\n        \"display_name\": \"Monthly\",\n        \"duration_in_days\": 30,\n        \"created_at\": \"2026-04-05T23:22:27.000000Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "plan pricing",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "xp0HdbV0MZcoZwxPfLy3Y3DZY6xbvns2xpJbZmwo577633d3",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"plan_billing_cycle_id\": 20,\r\n  \"currency\": \"USD\",\r\n  \"price\": 99.99\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/plans/10/pricing",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"plans",
+								"10",
+								"pricing"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"plan_billing_cycle_id\": 20,\r\n  \"currency\": \"USD\",\r\n  \"price\": 99.99\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/plans/10/pricing",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"plans",
+										"10",
+										"pricing"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.12"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 05 Apr 2026 23:31:15 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Pricing added successfully\",\n    \"data\": {\n        \"id\": 191,\n        \"plan_billing_cycle_id\": 20,\n        \"currency\": \"USD\",\n        \"price\": \"99.99\",\n        \"formatted_price\": \"$99.99\",\n        \"is_active\": true,\n        \"created_at\": \"2026-04-05T23:31:15.000000Z\"\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Subscription",
+			"item": [
+				{
+					"name": "get subscriptions",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/subscriptions/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"subscriptions",
+								""
+							]
+						},
+						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"plan_id\": 10,\n  \"plan_billing_cycle_id\": 20,\n  \"currency\": \"USD\",\n  \"trial_period_days\": 14\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/subscriptions",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"subscriptions"
+							]
+						},
+						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1MJkNneNGoCEvvswX7OObvMrq2t1l0Dx1ZY5Xs8c5a267bfc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"golds\",\n    \"description\": \"For advanced teams\",\n    \"features\": [\n        \"Advanced analytics\",\n        \"API access\",\n        \"Priority support\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/plans/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"plans",
+								"1"
+							]
+						},
+						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/plans/2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"plans",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get subscription",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/subscriptions/23",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"subscriptions",
+								"23"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Status",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/subscriptions/23/status-info",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"subscriptions",
+								"23",
+								"status-info"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "get tokens",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful PUT request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "xp0HdbV0MZcoZwxPfLy3Y3DZY6xbvns2xpJbZmwo577633d3",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Add your name in the body\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/tokens",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"tokens"
+							]
+						},
+						"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"Add your name in the body\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/auth/tokens",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"auth",
+										"tokens"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.12"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 05 Apr 2026 23:07:32 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"api-token\",\n            \"created_at\": \"2026-04-05T21:51:05.000000Z\",\n            \"last_used_at\": \"2026-04-05T23:02:54.000000Z\"\n        },\n        {\n            \"id\": 4,\n            \"name\": \"api-token\",\n            \"created_at\": \"2026-04-05T23:07:21.000000Z\",\n            \"last_used_at\": \"2026-04-05T23:07:32.000000Z\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"hima\",\n  \"email\": \"hima@example.com\",\n  \"password\": \"123123123\",\n  \"password_confirmation\": \"123123123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/register",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						},
+						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": [
+						{
+							"name": "Post data",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"hima\",\n  \"email\": \"hima@example.com\",\n  \"password\": \"123123123\",\n  \"password_confirmation\": \"123123123\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/auth/register",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.12"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 05 Apr 2026 21:51:05 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"User registered successfully\",\n    \"data\": {\n        \"user\": {\n            \"name\": \"hima\",\n            \"email\": \"hima@example.com\",\n            \"updated_at\": \"2026-04-05T21:51:05.000000Z\",\n            \"created_at\": \"2026-04-05T21:51:05.000000Z\",\n            \"id\": 9\n        },\n        \"token\": \"1|1MJkNneNGoCEvvswX7OObvMrq2t1l0Dx1ZY5Xs8c5a267bfc\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"hima@example.com\",\r\n  \"password\": \"123123123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"email\": \"hima@example.com\",\r\n  \"password\": \"123123123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/auth/login",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.12"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 05 Apr 2026 23:05:11 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Login successful\",\n    \"data\": {\n        \"user\": {\n            \"id\": 9,\n            \"name\": \"hima\",\n            \"email\": \"hima@example.com\",\n            \"email_verified_at\": null,\n            \"created_at\": \"2026-04-05T21:51:05.000000Z\",\n            \"updated_at\": \"2026-04-05T21:51:05.000000Z\"\n        },\n        \"token\": \"3|wH7ZNdLo6qMPEca02JIaC6uub5WPCQ2M2ZACTLGs4c11ec43\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful DELETE request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "wH7ZNdLo6qMPEca02JIaC6uub5WPCQ2M2ZACTLGs4c11ec43",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/logout",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"logout"
+							]
+						},
+						"description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/auth/logout",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"auth",
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.12"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 05 Apr 2026 23:06:20 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Logout successful\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Payment webhooks",
+			"item": [
+				{
+					"name": "payment failed",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"subscription_id\": 23,\r\n  \"amount\": 99.99,\r\n  \"currency\": \"USD\",\r\n  \"failure_reason\": \"card_declined\",\r\n  \"error_code\": \"card_declined\", \r\n  \"error_message\": \"Your card was declined.\",\r\n  \"transaction_id\": \"txn_1234567890\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/webhooks/payment-failed",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"webhooks",
+								"payment-failed"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"subscription_id\": 23,\r\n  \"amount\": 99.99,\r\n  \"currency\": \"USD\",\r\n  \"failure_reason\": \"card_declined\",\r\n  \"error_code\": \"card_declined\", \r\n  \"error_message\": \"Your card was declined.\",\r\n  \"transaction_id\": \"txn_1234567890\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/webhooks/payment-failed",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"webhooks",
+										"payment-failed"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.12"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 06 Apr 2026 01:14:31 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Payment failure processed\",\n    \"data\": {\n        \"subscription_id\": 23,\n        \"status\": \"past_due\",\n        \"grace_period_ends_at\": \"2026-04-09T01:14:31.000000Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "payment-success",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"subscription_id\": 5,\r\n    \"amount\": 99.99,\r\n    \"currency\": \"USD\",\r\n    \"status\": \"completed\",\r\n    \"transaction_id\": \"txn_1234567890\"}\r\n  ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/webhooks/payment-success",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"webhooks",
+								"payment-success"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"subscription_id\": 5,\r\n    \"amount\": 99.99,\r\n    \"currency\": \"USD\",\r\n    \"status\": \"completed\",\r\n    \"transaction_id\": \"txn_1234567890\"}\r\n  ",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/webhooks/payment-success",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"webhooks",
+										"payment-success"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.12"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 06 Apr 2026 02:48:37 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Payment success processed\",\n    \"data\": {\n        \"subscription_id\": 5,\n        \"status\": \"active\",\n        \"current_period_end\": \"2026-05-06T21:50:10.000000Z\"\n    }\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": "1"
+		},
+		{
+			"key": "base_url",
+			"value": "https://template.postman-echo.com"
+		},
+		{
+			"key": "token",
+			"value": "",
+			"type": "default"
+		}
+	]
+}
