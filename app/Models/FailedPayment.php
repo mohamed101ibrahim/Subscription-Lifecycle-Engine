@@ -10,6 +10,8 @@ class FailedPayment extends Model
 {
     use HasFactory;
 
+    public $timestamps = false; // Migration doesn't create updated_at
+
     protected $fillable = [
         'subscription_id',
         'amount',
