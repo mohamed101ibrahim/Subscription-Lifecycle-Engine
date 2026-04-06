@@ -75,9 +75,10 @@ class Handler extends ExceptionHandler
     {
         // Validation errors
         if ($exception instanceof ValidationException) {
-            return $this->validationError(
-                $exception->errors(),
-                $exception->getMessage()
+            return $this->error(
+                collect($exception->errors())->first()[0],
+                [],
+                422
             );
         }
 
@@ -104,6 +105,21 @@ class Handler extends ExceptionHandler
         // Method not allowed
         if ($exception instanceof MethodNotAllowedHttpException) {
             return $this->error('Method not allowed.', [], 405);
+        }
+
+        // Model not found
+        if ($exception instanceof ModelNotFoundException) {
+
+            $model = class_basename($exception->getModel());
+
+            $messages = [
+                'Plan' => 'Plan not found',
+                'User' => 'User not found',
+            ];
+
+            return $this->notFound(
+                $messages[$model] ?? 'Resource not found'
+            );
         }
 
         // Generic server error for unexpected exceptions

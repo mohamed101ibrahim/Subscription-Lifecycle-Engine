@@ -2,6 +2,9 @@
 .DS_Store
 .env
 PLAN*.md
+API-ROUTES.md
+SETUP.md
+Postman-Collection.json
 .env.backup
 .env.production
 .phpactor.json

@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Plan;
-use App\Http\Requests\CreatePlanRequest;
+use App\Http\Requests\StorePlanRequest;
+use App\Http\Requests\UpdatePlanRequest;
 use App\Services\PlanService;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Validation\Rule;
+use App\Http\Resources\SuccessResponse;
+use App\Http\Resources\ErrorResponse;
 
 class PlanController extends Controller
 {
@@ -30,54 +33,81 @@ class PlanController extends Controller
 
         $plans = $this->planService->listActivePlans($page, $perPage);
 
-        return response()->json([
-            'success' => true,
-            'data' => $plans->items(),
-            'pagination' => [
-                'current_page' => $plans->currentPage(),
-                'per_page' => $plans->perPage(),
-                'total' => $plans->total(),
-                'last_page' => $plans->lastPage(),
-                'from' => $plans->firstItem(),
-                'to' => $plans->lastItem(),
-            ],
-        ]);
+        return response()->json(
+            SuccessResponse::collection(
+                $plans->items(),
+                'Plans retrieved successfully',
+                [
+                    'current_page' => $plans->currentPage(),
+                    'per_page' => $plans->perPage(),
+                    'total' => $plans->total(),
+                    'last_page' => $plans->lastPage(),
+                    'from' => $plans->firstItem(),
+                    'to' => $plans->lastItem(),
+                ]
+            )
+        );
     }
 
     /**
      * Create a new plan
      */
-    public function store(CreatePlanRequest $request): JsonResponse
+    public function store(StorePlanRequest $request): JsonResponse
     {
+        // Additional check for duplicate name (belt and suspenders)
+        if (Plan::where('name', $request->name)->exists()) {
+            return response()->json(
+                ErrorResponse::make(
+                    'A plan with this name already exists',
+                    ['name' => ['The name has already been taken.']],
+                    'PLAN_NAME_EXISTS',
+                    422
+                ),
+                422
+            );
+        }
+
         try {
             $plan = $this->planService->createPlan($request->validated());
 
-            return response()->json([
-                'success' => true,
-                'message' => 'Plan created successfully',
-                'data' => [
+            return response()->json(
+                SuccessResponse::created([
                     'id' => $plan->id,
                     'name' => $plan->name,
                     'description' => $plan->description,
                     'features' => $plan->features,
                     'is_active' => $plan->is_active,
                     'created_at' => $plan->created_at->toISOString(),
-                ],
-            ], 201);
+                ], 'Plan created successfully'),
+                201
+            );
         } catch (\Exception $e) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Failed to create plan',
-                'error' => $e->getMessage(),
-            ], 500);
+            return response()->json(
+                ErrorResponse::make(
+                    'Failed to create plan',
+                    null,
+                    'PLAN_CREATION_FAILED',
+                    500
+                ),
+                500
+            );
         }
     }
 
     /**
      * Get plan details
      */
-    public function show(Plan $plan): JsonResponse
+    public function show($id): JsonResponse
     {
+        $plan = Plan::find($id);
+
+        if (!$plan) {
+            return response()->json(
+                ErrorResponse::notFound('Plan'),
+                404
+            );
+        }
+
         $planDetails = $this->planService->getPlanDetails($plan);
 
         return response()->json([
@@ -114,18 +144,19 @@ class PlanController extends Controller
     /**
      * Update plan
      */
-    public function update(Request $request, Plan $plan): JsonResponse
+    public function update(UpdatePlanRequest $request, $id): JsonResponse
     {
-        $validated = $request->validate([
-            'name' => ['sometimes', 'string', 'max:255', Rule::unique('plans')->ignore($plan->id)],
-            'description' => 'nullable|string',
-            'features' => 'nullable|array',
-            'features.*' => 'string',
-            'is_active' => 'boolean',
-        ]);
+        $plan = Plan::find($id);
+
+        if (!$plan) {
+            return response()->json(
+                ErrorResponse::notFound('Plan'),
+                404
+            );
+        }
 
         try {
-            $updatedPlan = $this->planService->updatePlan($plan, $validated);
+            $updatedPlan = $this->planService->updatePlan($plan, $request->validated());
 
             return response()->json([
                 'success' => true,
@@ -151,8 +182,17 @@ class PlanController extends Controller
     /**
      * Delete plan (soft delete or deactivate)
      */
-    public function destroy(Plan $plan): JsonResponse
+    public function destroy($id): JsonResponse
     {
+        $plan = Plan::find($id);
+
+        if (!$plan) {
+            return response()->json(
+                ErrorResponse::notFound('Plan'),
+                404
+            );
+        }
+
         try {
             $this->planService->deactivatePlan($plan);
 
@@ -172,8 +212,17 @@ class PlanController extends Controller
     /**
      * Add billing cycle to plan
      */
-    public function addBillingCycle(Request $request, Plan $plan): JsonResponse
+    public function addBillingCycle(Request $request, $id): JsonResponse
     {
+        $plan = Plan::find($id);
+
+        if (!$plan) {
+            return response()->json(
+                ErrorResponse::notFound('Plan'),
+                404
+            );
+        }
+
         $validated = $request->validate([
             'cycle_type' => ['required', Rule::in(['daily', 'weekly', 'monthly', 'quarterly', 'semi_annual', 'yearly'])],
             'duration_in_days' => 'required|integer|min:1|max:365',
@@ -212,8 +261,17 @@ class PlanController extends Controller
     /**
      * Add pricing to billing cycle
      */
-    public function addPricing(Request $request, Plan $plan): JsonResponse
+    public function addPricing(Request $request, $id): JsonResponse
     {
+        $plan = Plan::find($id);
+
+        if (!$plan) {
+            return response()->json(
+                ErrorResponse::notFound('Plan'),
+                404
+            );
+        }
+
         $validated = $request->validate([
             'plan_billing_cycle_id' => 'required|exists:plan_billing_cycles,id',
             'currency' => 'required|string|size:3|uppercase',
@@ -254,8 +312,17 @@ class PlanController extends Controller
     /**
      * Get plan pricing by currency and cycle
      */
-    public function getPricing(Request $request, Plan $plan): JsonResponse
+    public function getPricing(Request $request, $id): JsonResponse
     {
+        $plan = Plan::find($id);
+
+        if (!$plan) {
+            return response()->json(
+                ErrorResponse::notFound('Plan'),
+                404
+            );
+        }
+
         $validated = $request->validate([
             'currency' => 'required|string|size:3|uppercase',
             'cycle' => ['required', Rule::in(['daily', 'weekly', 'monthly', 'quarterly', 'semi_annual', 'yearly'])],

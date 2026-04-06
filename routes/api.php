@@ -50,13 +50,13 @@ Route::middleware('auth:sanctum')->group(function () {
     // Plan management routes
     Route::prefix('plans')->group(function () {
         Route::get('/', [PlanController::class, 'index']);
-        Route::post('/', [PlanController::class, 'store']);
-        Route::get('{plan}', [PlanController::class, 'show']);
-        Route::put('{plan}', [PlanController::class, 'update']);
-        Route::delete('{plan}', [PlanController::class, 'destroy']);
-        Route::post('{plan}/billing-cycles', [PlanController::class, 'addBillingCycle']);
-        Route::post('{plan}/pricing', [PlanController::class, 'addPricing']);
-        Route::get('{plan}/pricing', [PlanController::class, 'getPricing']);
+        Route::post('/create', [PlanController::class, 'store']);
+        Route::get('{id}', [PlanController::class, 'show']);
+        Route::put('{id}', [PlanController::class, 'update']);
+        Route::delete('{id}', [PlanController::class, 'destroy']);
+        Route::post('{id}/billing-cycles', [PlanController::class, 'addBillingCycle']);
+        Route::post('{id}/pricing', [PlanController::class, 'addPricing']);
+        Route::get('{id}/pricing', [PlanController::class, 'getPricing']);
     });
 
     // Subscription management routes
